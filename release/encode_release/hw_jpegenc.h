@@ -5,6 +5,9 @@ extern "C"
 
 #ifndef __RK_HW_JPEGENC_H__
 #define __RK_HW_JPEGENC_H__
+#include "vpu_global.h"
+#include "vpu_mem_pool.h"
+
 
 typedef enum
 {
@@ -52,6 +55,8 @@ typedef struct{
 	rat_t DigitalZoomRatio;// inputw/inputw
 	//int FocalLengthIn35mmFilm;
 	int SceneCaptureType;//0
+	char *makernote;
+	int  makernotechars;//length of makernote, include of the end '\0'
 	
 }RkExifInfo;
 
@@ -102,6 +107,7 @@ typedef struct
 	RkGPSInfo *gpsInfo;//be null when gps is not set, else not be null
 	unsigned char* y_vir_addr;
 	unsigned char* uv_vir_addr;
+	vpu_display_mem_pool *pool;
 }JpegEncInInfo;
 
 typedef struct
